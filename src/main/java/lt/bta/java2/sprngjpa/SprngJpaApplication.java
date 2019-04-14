@@ -11,6 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootApplication
@@ -26,6 +27,8 @@ public class SprngJpaApplication {
 interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
 
 	List<Product> findByNameContains(String name);
+
+	List<Product> findByPriceLessThan(BigDecimal price);
 }
 
 
@@ -42,7 +45,7 @@ class ProductApi {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> get(@PathVariable int id) {
-		return productRepository.findById(id).map(e -> ResponseEntity.ok(e)).orElseGet((() -> ResponseEntity.notFound().build()));
+		return productRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
 	}
 
 	@GetMapping("/page")
@@ -63,6 +66,11 @@ class ProductApi {
 	@GetMapping("/find/name-like")
 	public List<Product> findByNameContains(@RequestParam String s) {
 		return productRepository.findByNameContains(s);
+	}
+
+	@GetMapping("/find/price-less")
+	public List<Product> findByPriceLessThan(@RequestParam BigDecimal p) {
+		return productRepository.findByPriceLessThan(p);
 	}
 }
 
