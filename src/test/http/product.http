@@ -1,0 +1,82 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+GET http://localhost:8080/api/product/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/199
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/page
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/page?page=2&size=5&sort=name
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/product
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "VW Golf Mk1",
+  "description": "Volkswagen Golf Mk1",
+  "price": 9.99,
+  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Volkswagen_Golf_1-2.jpg/1280px-Volkswagen_Golf_1-2.jpg"
+}
+
+###
+
+DELETE http://localhost:8080/api/product/15
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/find/name-like?s=x
+Accept: application/json
+
+###
+
+###
+### Data Rest:
+###
+
+GET http://localhost:8080/rest
+Accept: application/json
+
+###
+
+GET http://localhost:8080/rest/product/16
+Accept: application/json
+
+###
+
+GET http://localhost:8080/rest/product?page=0&size=3
+Accept: application/json
+
+###
+
+PUT http://localhost:8080/rest/product/16
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "VW Golf Mk1",
+  "description": "Volkswagen Golf Mk1",
+  "price": 0.99,
+  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Volkswagen_Golf_1-2.jpg/1280px-Volkswagen_Golf_1-2.jpg"
+}
+
+###
+
