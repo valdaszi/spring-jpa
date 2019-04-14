@@ -22,7 +22,7 @@ These additional references should also help you:
 
 ### Kas gali būti svarbu
 
-- __Prisijungimai prie DB nurodome application.properties__:
+- __Prisijungimai prie DB nurodomi faile application.properties__:
     
     ```
     spring.datasource.url=jdbc:mysql://localhost:3306/store?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Europe/Vilnius
@@ -30,17 +30,17 @@ These additional references should also help you:
     spring.datasource.password=mysql123
     ```
     
-- __Darbas su DB vyksta repositorius__ 
+- __Darbas su DB vyksta naudojant atitinkamus repositorius__ 
 
-    Tai injektinami objektus, kurie turi būti aprašyti kaip
-    interfeisai išplečiantys __CrudRepository__ arba __PagingAndSortingRepository__
+    Tai injekcinami objektai, kurie turi būti aprašyti kaip
+    interfeisai išplečiantys interfeisus __CrudRepository__ arba __PagingAndSortingRepository__
     ```
     interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {    
     }
     ```
     
     Tuose servisuose ar kontroleriuose, kur mums reikia prieiti prie šio repositoriaus, 
-    reikia jį injekcintis su __@Autowired__ arba per konstruktorių.
+    reikia jį injekcinti su __@Autowired__ arba per konstruktorių.
     ```
     @RestController
     @RequestMapping("/api/product")
@@ -57,8 +57,8 @@ These additional references should also help you:
     ```
     
     Repositoriaus interfeise galima apsirašyti ir daugiau mums reikalingų specifinių metodų.
-    Šių metodų veikimas nusakomas pagal jų pavadinimą 
-    (https://docs.spring.io/spring-data/jpa/docs/current/reference/html/):
+    Šių metodų veikimas nusakomas pagal jų __pavadinimą (!)__ 
+    (daugiau info: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/):
     ```
     interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
     
