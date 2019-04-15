@@ -1,5 +1,6 @@
 package lt.bta.java2.sprngjpa;
 
+import lt.bta.java2.sprngjpa.entities.Invoice;
 import lt.bta.java2.sprngjpa.entities.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +24,10 @@ public class SprngJpaApplication {
 
 }
 
+//
+// Products
+//
+
 @RepositoryRestResource(path = "product")
 interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
 
@@ -30,7 +35,6 @@ interface ProductRepository extends PagingAndSortingRepository<Product, Integer>
 
 	List<Product> findByPriceLessThan(BigDecimal price);
 }
-
 
 @RestController
 @RequestMapping("/api/product")
@@ -75,3 +79,26 @@ class ProductApi {
 }
 
 
+//
+// Invoices
+//
+
+@RepositoryRestResource(path = "invoice")
+interface InvoiceRepository extends  PagingAndSortingRepository<Invoice, Integer> {}
+
+@RestController
+@RequestMapping("/api/invoice")
+class InvoiceApi {
+
+	final private InvoiceRepository invoiceRepository;
+
+	InvoiceApi(InvoiceRepository invoiceRepository) {
+		this.invoiceRepository = invoiceRepository;
+	}
+
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Invoice> get(@PathVariable int id) {
+		return invoiceRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
+	}
+}
