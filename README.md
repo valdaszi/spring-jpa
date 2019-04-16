@@ -85,3 +85,7 @@ These additional references should also help you:
     ```
     spring.data.rest.basePath=/rest
     ```
+    
+    Duomenys grąžinami [HAL](https://en.wikipedia.org/wiki/Hypertext_Application_Language) formate. 
+    Taip pat galima pasiskaityti [čia](https://spring.io/understanding/HATEOAS) ir 
+    [čia](https://docs.spring.io/spring-data/rest/docs/current/reference/html/) 

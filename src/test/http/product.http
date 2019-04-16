@@ -53,11 +53,16 @@ Accept: application/json
 
 ###
 
+GET http://localhost:8080/api/product/cart/add/2
+Accept: application/json
+Cookie: JSESSIONID=456C746A0CB17AC546E40E4626A03407
+
+
 ###
 ### Data Rest:
 ###
 
-GET http://localhost:8080/rest
+GET http://localhost:8080/rest/profile/product
 Accept: application/json
 
 ###

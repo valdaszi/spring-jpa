@@ -2,6 +2,7 @@ package lt.bta.java2.sprngjpa;
 
 import lt.bta.java2.sprngjpa.entities.Invoice;
 import lt.bta.java2.sprngjpa.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class SprngJpaApplication {
@@ -23,10 +25,6 @@ public class SprngJpaApplication {
 	}
 
 }
-
-//
-// Products
-//
 
 @RepositoryRestResource(path = "product")
 interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
@@ -40,16 +38,18 @@ interface ProductRepository extends PagingAndSortingRepository<Product, Integer>
 @RequestMapping("/api/product")
 class ProductApi {
 
-	final private ProductRepository productRepository;
-
-	ProductApi(ProductRepository productRepository) {
-		this.productRepository = productRepository;
-	}
-
+	@Autowired
+	private ProductRepository productRepository;
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> get(@PathVariable int id) {
-		return productRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
+		//return productRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
+		Optional<Product> product = productRepository.findById(id);
+		if (product.isPresent()) {
+			return ResponseEntity.ok(product.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@GetMapping("/page")

@@ -14,7 +14,7 @@ Accept: application/json
 ### Data Rest:
 ###
 
-GET http://localhost:8080/rest/invoice
+GET http://localhost:8080/rest/profile/invoice
 Accept: application/json
 
 ###

@@ -22,6 +22,7 @@ INSERT INTO invoices(date, number, sum, client_id) VALUES('2018-01-15', 'INV 000
 INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(1, 1, 99.99, 10);
 INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(1, 2, 9.99, 100);
 
-INSERT INTO invoices(date, number, sum, client_id) VALUES('2018-01-16', 'INV 000128', 199.90, 1);
-INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(1, 1, 99.99, 10);
-INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(1, 2, 9.99, 100);
+INSERT INTO invoices(date, number, sum, client_id) VALUES('2018-01-16', 'INV 000128', 60.00, 1);
+INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(2, 4, 5.00, 2);
+INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(2, 5, 10.00, 3);
+INSERT INTO inv_lines(invoice_id, product_id, price, qty) VALUES(2, 6, 20.00, 1);
