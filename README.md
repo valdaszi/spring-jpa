@@ -68,6 +68,22 @@ These additional references should also help you:
     }
     ```
     
+- __Jei reikia, kad metode visos operacijos su DB būtų vykdomos vienoje transakcijoje, tai tokį metodą reikia anotuoti
+    @Transactional__
+    ```
+    @Transactional
+    @GetMapping("/trans-1")
+    public int trans1() {
+        ...
+    }
+
+    ```
+    __@Transactional__ anotacija galima pažymėti ir klasę, tai reikš, kad visi tos klasės metodai yra transakciniai.
+    
+    - _Pastaba:_ Būtinai reikia nustatyti __spring.jpa.properties.hibernate.dialect__ parametro reikšmę faile 
+        __application.properties__, nes pvz. __org.hibernate.dialect.MySQL5Dialect__ nepalaiko transakcijų.
+         
+    
 - __Galima automatiškai pagal repositoriaus metodus generuoti REST metodus__
     
     Tam reikia panaudoti Spring Data REST. O taip pat anotuoti atitinkamus repositorius __@RepositoryRestResource__:
@@ -76,6 +92,7 @@ These additional references should also help you:
     interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
     }
     ```
+    
     
 - __Kaip nurodyti nuo kurio URL prasideda Spring Data REST?__
     

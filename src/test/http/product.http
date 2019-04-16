@@ -89,4 +89,20 @@ Content-Type: application/json
 }
 
 ###
+### Transakcijos
+###
 
+GET http://localhost:8080/api/product/find/name-like?s=Obuolys
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/trans-0
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/product/trans-1
+Accept: application/json
+
+###

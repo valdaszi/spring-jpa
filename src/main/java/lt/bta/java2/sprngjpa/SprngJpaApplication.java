@@ -11,9 +11,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +78,32 @@ class ProductApi {
 	public List<Product> findByPriceLessThan(@RequestParam BigDecimal p) {
 		return productRepository.findByPriceLessThan(p);
 	}
+
+
+	// patikriname kaip veikia transakcijos
+
+	@GetMapping("/trans-0")
+	public int trans0() {
+		createProducts();
+		return 0;
+	}
+
+	@Transactional
+	@GetMapping("/trans-1")
+	public int trans1() {
+		createProducts();
+		return 0;
+	}
+
+	private void createProducts() {
+		Product product = new Product();
+		product.setName("Obuolys");
+		productRepository.save(product);
+
+		Product product2 = new Product();
+		product2.setName("Obuolys 012345678901234567890123456789");
+		productRepository.save(product2);
+	}
 }
 
 
@@ -101,4 +129,5 @@ class InvoiceApi {
 	public ResponseEntity<Invoice> get(@PathVariable int id) {
 		return invoiceRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
 	}
+
 }
