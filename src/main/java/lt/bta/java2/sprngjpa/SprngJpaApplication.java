@@ -2,6 +2,8 @@ package lt.bta.java2.sprngjpa;
 
 import lt.bta.java2.sprngjpa.entities.Invoice;
 import lt.bta.java2.sprngjpa.entities.Product;
+import lt.bta.java2.sprngjpa.session.Cart;
+import lt.bta.java2.sprngjpa.session.SessionData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -43,6 +45,9 @@ class ProductApi {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private SessionData sessionData;
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> get(@PathVariable int id) {
 		//return productRepository.findById(id).map(ResponseEntity::ok).orElseGet((() -> ResponseEntity.notFound().build()));
@@ -78,6 +83,17 @@ class ProductApi {
 	public List<Product> findByPriceLessThan(@RequestParam BigDecimal p) {
 		return productRepository.findByPriceLessThan(p);
 	}
+
+
+
+	// Session demo:
+
+	@GetMapping("/cart")
+	public Cart addCart() {
+		sessionData.getCart().setCount(sessionData.getCart().getCount() + 1);
+		return sessionData.getCart();
+	}
+
 
 
 	// patikriname kaip veikia transakcijos

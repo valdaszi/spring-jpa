@@ -89,6 +89,14 @@ Content-Type: application/json
 }
 
 ###
+### Session cart
+###
+
+GET http://localhost:8080/api/product/cart
+Cookie: JSESSIONID=54CEC51348CC7DA71C462B9CCDB34FA9
+Accept: application/json
+
+###
 ### Transakcijos
 ###
 
