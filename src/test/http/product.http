@@ -67,6 +67,16 @@ Accept: application/json
 
 ###
 
+GET http://localhost:8080/rest/product/search
+Accept: application/json
+
+###
+
+GET http://localhost:8080/rest/product/search/findByNameContains?name=Win
+Accept: application/json
+
+###
+
 GET http://localhost:8080/rest/product/16
 Accept: application/json
 

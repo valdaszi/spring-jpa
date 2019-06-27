@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,9 +34,9 @@ public class SprngJpaApplication {
 @RepositoryRestResource(path = "product")
 interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
 
-	List<Product> findByNameContains(String name);
+	List<Product> findByNameContains(@Param("name") String name);
 
-	List<Product> findByPriceLessThan(BigDecimal price);
+	List<Product> findByPriceLessThan(@Param("price") BigDecimal price);
 }
 
 @RestController
